@@ -4,3 +4,17 @@ touch  + 文档名.扩展名    创建文档
 git status   查看文件状态{unstaged 未缓存
                                           untracked 为追踪}
 git log      查看提交记录
+git reset --hard commit id
+	commit id 可以使用git-log和git log来查看
+git reflog 查看所有修改和回退记录
+.gitignore  文件 来管理不想被上传的文件
+
+
+git brach  查看分支
+       git brach + 分支名   创建分支
+git checkout  + 分支名   切换分支
+	git checkout -b + 分支名   创建并切换分支
+		-d + 分支名   删除分支   大写是强制删除
+
+必须是master分支
+	git merge +分支名  合并分支
