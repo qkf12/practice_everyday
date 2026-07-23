@@ -1,3 +1,4 @@
 psvm  快速生成开启按钮
 sout   打印
 次数.fori+回车
+ctrl +alt +l 格式化文档
