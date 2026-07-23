@@ -1,0 +1,6 @@
+git init      创建仓库
+ll                查看仓库
+touch  + 文档名.扩展名    创建文档
+git status   查看文件状态{unstaged 未缓存
+                                          untracked 为追踪}
+git log      查看提交记录
