@@ -18,3 +18,27 @@ DBeaver（图形化管理工具）
 
 通用下载页：官网会自动识别你的操作系统，地址是：https://dbeaver.io/download/
 
+
+
+
+
+cmd链接mysql
+cd 进入
+	mysql -u root - p
+		输入密码
+		show databases   展示数据库  
+		use + 数据库名字  打开数据库
+			select  等  mysql语言
+		
+	
+
+
+
+ifconfing  查看服务器地址
+liniux
+	mysql -h mysql的服务器地址 -u 用户名 -p
+			输入密码
+			同上
+
+
+
