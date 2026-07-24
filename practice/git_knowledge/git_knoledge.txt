@@ -1,5 +1,6 @@
 git init      创建仓库
 ll                查看仓库
+touch       查看文件
 touch  + 文档名.扩展名    创建文档
 git status   查看文件状态{unstaged 未缓存
                                           untracked 为追踪}
@@ -18,3 +19,40 @@ git checkout  + 分支名   切换分支
 
 必须是master分支
 	git merge +分支名  合并分支
+	
+
+生成公钥
+	ssh -keygen -t rsa
+	获取公钥
+		cat ~/.ssh/id_rsa.pub
+验证是否成功配置
+	ssh -T git@gitee.com
+			yes
+
+查看自己是ssh协议还是https协议
+	git remote -v
+
+查看远程仓库
+	git remote
+添加远程仓库
+	git remote add origin（是个名字 可以改） +协议（都行）
+
+看远程分支关系
+	git remote -vv
+ 
+设置 git push 的分支
+	git  push --set-upstream origin main : main
+
+同时提交到两个远程仓库
+	 git remote -v  查看  设置情况 origin 关系必须开头全部都是 origin 
+	git remote set-url --add origin +网页仓库地址.git
+
+克隆仓库
+	git clon +协议地址 +文件夹名
+		
+抓取文件  
+	git fetch      查看分支提交信息 
+		看情况合并
+拉取指令
+	git pull      查看并合并分支信息
+	
