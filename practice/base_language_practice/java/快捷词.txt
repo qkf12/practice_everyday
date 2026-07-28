@@ -2,3 +2,6 @@ psvm  快速生成开启按钮
 sout   打印
 次数.fori+回车
 ctrl +alt +l 格式化文档
+alt + 回车   捕获错误
+alt + insert   快速写面向对象
+			set get  还有 有参构造器
