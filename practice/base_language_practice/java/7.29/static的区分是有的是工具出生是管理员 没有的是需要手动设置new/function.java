@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class function {
-    private   ArrayList<food> foods = new ArrayList<>();
-    public  void main_function(){
+    private static  ArrayList<food> foods = new ArrayList<>();
+    public static void main_function(){
 
         Scanner sc = new Scanner(System.in);
         while(true){
@@ -39,7 +39,7 @@ public class function {
             }
         }
     }
-    public  void one_function(){
+    public static void one_function(){
         Scanner sc = new Scanner(System.in);
 
         while(true){
@@ -65,7 +65,7 @@ public class function {
         }
     }
 
-    public  void two_function(){
+    public static void two_function(){
         if (foods.size()==0){
             System.out.println("请先上架菜哦");
             return;
@@ -78,7 +78,7 @@ public class function {
 
         }
     }
-    public  void three_function(){
+    public static void three_function(){
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入你要更改的菜品名字");
         String update_name = sc.next();
@@ -108,7 +108,7 @@ public class function {
             }
         }
     }
-    public  void four_function(){
+    public static void four_function(){
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入你要删除的菜品关键字");
         String key_name = sc.next();
