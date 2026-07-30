@@ -1,0 +1,9 @@
+# 1. 更新软件源（让系统知道最新的软件版本）
+sudo apt update
+
+# 2. 安装默认的 JDK（包含编译和运行 Java 所需的一切）
+sudo apt install default-jdk -y
+
+java -version
+javac -version
+查看版本
