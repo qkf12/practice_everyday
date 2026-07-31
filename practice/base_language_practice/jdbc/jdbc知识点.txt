@@ -1,0 +1,2 @@
+DML  是基本的增删改查
+DDL  是创建和删除   create 和 drop
