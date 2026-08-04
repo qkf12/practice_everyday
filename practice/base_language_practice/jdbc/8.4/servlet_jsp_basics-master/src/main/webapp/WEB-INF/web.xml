@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+
+
+<!-- Here is the context-param -->
+<context-param>
+	<param-name>name</param-name>
+	<param-value>Prashant</param-value>
+</context-param>
+<context-param>
+	<param-name>sem</param-name>
+	<param-value>Vth</param-value>
+</context-param>
+<context-param>
+	<param-name>Roll No</param-name>
+	<param-value>0103AD231149</param-value>
+</context-param>
+<!-- Servelet context is universal for all the servelets and are available for all servlets-->
+
+
+<!-- Here is just the servelet name and their mappings -->
+
+<servlet>
+    <servlet-name>AddServlet</servlet-name>
+    <servlet-class>com.codertruf.AddServlet</servlet-class>
+</servlet>
+
+<!-- Servelt configuration is manually done for each of the servelet to store the data using teh <init> tag -->
+<servlet-mapping>
+    <servlet-name>AddServlet</servlet-name>
+    <url-pattern>/add</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+	<servlet-name>SqServlet</servlet-name>
+	<servlet-class>com.codertruf.SqServlet</servlet-class>
+</servlet>  
+<servlet-mapping>
+	<servlet-name>SqServlet</servlet-name>
+	<url-pattern>/sq</url-pattern>
+</servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>sqSum</servlet-name>
+  	<servlet-class>com.codertruf.SqrdSumServlet</servlet-class>
+  	<!-- servelt config for sqSum servlet-->
+  	<init-param>
+		<param-name>Roll No</param-name>
+		<param-value>147</param-value>
+	</init-param>
+	<init-param>
+		<param-name>Phone</param-name>
+		<param-value>Poco X-Series</param-value>
+	</init-param>
+	
+  </servlet> 
+  <servlet-mapping>
+  	<servlet-name>sqSum</servlet-name>
+  	<url-pattern>/sqrdSum</url-pattern>
+  </servlet-mapping> 
+  
+  <display-name>DemoApp</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.xhtml</welcome-file>
+  </welcome-file-list>
+</web-app>
