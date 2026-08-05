@@ -13,7 +13,7 @@ public class function  {
      public static  Connection conn;
      public static final String url = "jdbc:mysql://127.0.0.1:3306/practice";
      public static final String user = "root";
-     public static final String password = "Qkf070425.";
+     public static final String password = "............5.";
 
 
 //    1，先上架所知道的书籍
