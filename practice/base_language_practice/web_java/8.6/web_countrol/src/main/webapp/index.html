@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>本地文档编辑器</title>
+</head>
+<body>
+<h2>📄 本地文档编辑</h2>
+<div>
+    <textarea id="content" rows="10" cols="50">加载中...</textarea>
+</div>
+<br>
+<button onclick="loadFile()">读取文件</button>
+<button onclick="saveFile()">保存文件</button>
+
+<script>
+    // 读取文件
+    function loadFile() {
+        fetch('/file-op?action=read')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('content').value = data;
+            });
+    }
+
+    // 保存文件
+    // 保存文件
+    function saveFile() {
+        const content = document.getElementById('content').value;
+        fetch('/file-op?action=write', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: 'content=' + encodeURIComponent(content)
+        })
+            .then(res => res.text())
+            .then(msg => alert(msg));
+    }
+
+    // 页面加载时自动读取
+    window.onload = loadFile;
+</script>
+</body>
+</html>
