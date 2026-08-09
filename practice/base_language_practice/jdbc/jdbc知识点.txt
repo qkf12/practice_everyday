@@ -1,2 +1,16 @@
 DML  是基本的增删改查
 DDL  是创建和删除   create 和 drop
+
+ctrl+alt+ shift+s
+	空项目  设置 jdk版本 
+	创建模块  jar包  专门在模块后 的大目录里创建
+	识别 jar 包 右键文件
+		添加为库
+			模块有效
+Class.forName("   ");
+Connection conn = DriverManage.getConnection(url,username,password );
+String sql = " ?? ";
+PreparedStatement pstmt = conn.createPreparestatement(sql);
+pstmt.setInt(1,id);
+.......
+int count = pstmt.executeUpdate();
