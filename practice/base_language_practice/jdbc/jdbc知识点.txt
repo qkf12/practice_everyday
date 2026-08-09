@@ -1,16 +1,33 @@
 DML  是基本的增删改查
 DDL  是创建和删除   create 和 drop
 
+jdbc工作流程
 ctrl+alt+ shift+s
 	空项目  设置 jdk版本 
 	创建模块  jar包  专门在模块后 的大目录里创建
 	识别 jar 包 右键文件
 		添加为库
 			模块有效
+
+
 Class.forName("   ");
 Connection conn = DriverManage.getConnection(url,username,password );
 String sql = " ?? ";
-PreparedStatement pstmt = conn.createPreparestatement(sql);
-pstmt.setInt(1,id);
-.......
-int count = pstmt.executeUpdate();
+//PreparedStatement pstmt = conn.createPreparestatement(sql);//防止sql注入
+//pstmt.setInt(1,id);
+//.......
+//高级一点的自动释放的
+try(PreparedStatement pstmt = conn.createPreparestatement(sql)){
+	pstmt.setInt(1,id);
+	.......
+	int count = pstmt.executeUpdate();//一般查看影响行数的情况下用
+	Resultset rs = pstmt.executeUpdate();//用于导出数据库里的数据的情况下使用
+	while(){
+	}
+}catch(Exception e){
+	e.printStackTrace();
+}//try-with-resources  写法自动将pstmt资源释放
+
+//最后释放资源
+//pstmt.close(); 
+conn.close();
