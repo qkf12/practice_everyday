@@ -204,7 +204,7 @@ public class function  {
                 String name = sc.next();
                 System.out.println("请输入新的库存");
                 int quantity = sc.nextInt();
-                String sql = "update library_control_books set book_price = ? where book_name = ?";
+                String sql = "update library_control_books set book_quantity = ? where book_name = ?";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setString(1,name);
                     pstmt.setDouble(2,quantity);
