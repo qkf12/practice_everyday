@@ -31,3 +31,33 @@ try(PreparedStatement pstmt = conn.createPreparestatement(sql)){
 //最后释放资源
 //pstmt.close(); 
 conn.close();
+
+
+
+事务功能：在创建statement之后
+	try{
+		conn.setAutocommit(false);
+		int count1 = stmt.executeUpdate(sql);
+		conn.commit();
+	}catch(Exception e){
+		conn.rollback;//回滚事务
+		e.printStackTrace();
+	}
+
+如果是prepareStatement  可以从最开始的drivermanager 开始用try包围
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
