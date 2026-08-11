@@ -56,3 +56,53 @@ git checkout  + 分支名   切换分支
 拉取指令
 	git pull      查看并合并分支信息
 	
+
+回溯到相应版本
+		查看提交日志  简洁版  
+				git log --oneline
+		在本地回退到相应版本
+				git checkout id
+	把云端的也回溯到相应版本
+		查看当前有没有未提交的东西
+			git status
+		在本地回退到相应版本
+				git checkout id
+		切换到main
+			git checkout main
+			git reset --hard  id
+		强制提交
+			git push --force origin main
+		
+
+
+一句代码同时 提交到 github和gitee上
+		git remote -v    查看  远程仓库地址
+		git remote set-url --add --push origin https:/   添加第二个推送地址
+		git remote get-url --push --all origin  查看是否验证成功
+		git push origin main  测试同时推送
+		
+
+		代码总结
+			# 1. 查看当前配置
+			git remote -v
+
+			# 2. 重置 push 地址为 GitHub
+			git remote set-url --push origin https
+			# 3. 添加 Gitee 作为额外推送地址
+			git remote set-url --add --push origin 								https://git
+
+			# 4. 验证
+			git remote get-url --push --all origin
+
+			# 5. 推送测试
+			git push origin main
+
+
+
+
+
+
+
+
+
+
