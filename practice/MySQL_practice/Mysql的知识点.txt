@@ -40,5 +40,113 @@ liniux
 			输入密码
 			同上
 
+table   		表
+field			字段 列
+record		记录 行
+
+int			正数
+tinyint		小正数
+tinyint unsigned   正小整数
+decimal		小数
+varchar		字符串
+datetime		日期时间
+
+create table 表明(
+	字段名 数据类型
+);
+
+如果 在创建表的时候  没想到还有一列  在原有的表上新建一列
+		alter table 表名 add column 列名 varchar(10);
+
+create table students(
+	name varchar(10),
+	age tinyint unsigned
+	high decimal(5,2),
+	weight decimal(5,2)
+);
+
+insert into 表名  values (数据，数据),(数据，数据),(数据，数据);
+insert into 表名 (列名,列名,列名) values (数据，数据),(数据，数据),(数据，数据),;
+
+
+insert into students (name,weight) values ("小明",130.1);
+insert into students values ("小刚",   18,  178.3, 137.2),
+("小黄"，19，180，140)，
+("小黄"，19，180，140);
+
+
+select * from 表名 ；
+selsct 列名，列名 from 表名；
+selsct 列名，列名 from 表名 where  条件 ；
+
+
+update 表名 set  数据 = 新数据；
+update 表名 set  数据 = 新数据   where  行名  =  目标数据；
+
+
+update students set  age = 20；
+update students set  age = 20   where   name  = "小刚"；
+update students set  high = 182   where   age  >= 20；
+
+
+delete from 表名；
+delete from 表名  where  条件；
+
+
+delete from  students where  name  = "小明";
+
+
+truncate  table  表名；  没有条件   删除表的所有内容
+		自增长字段  从1开始
+
+
+drop  table  表名;     直接删除表   
+drop  table    if  exists 表名;   可以加条件
+		exists  存在
+
+约束
+		primary key    主键         创建主键之后  可以用 0  来做占位符
+		not  null		非空
+		unique		唯一
+		default  数据  	默认值
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
