@@ -111,9 +111,37 @@ drop  table    if  exists 表名;   可以加条件
 		default  数据  	默认值
 
 
+快捷键
+		ctrl+r   直接运行这一行sql语句
+		ctrl + shift + r  执行选中的sql代码
+
+select   专项练习
+		select 列名，列名 from 表明；
+		select 列名 as 别名，列名 as 别名 from 表明；
+		select 列名 别名，列名 别名 from 表名；
+
+		select * from 表名 as 别名；		给表起名是为了合并表格的时候用
+		select * from 表名 别名；
+
+		
+		select  distinct * from 表名； 去掉查询时的重复数据
+
+		where 语句
+			select * from 表名 where  条件 and 条件；
+			<>  是不等于  同等于 !=
+			select * from 表名  not  where 条件；   相反的条件  跟!= 很像
+				
+		模糊查询语句
+			select * from 表名 where name like "张%";  查找以张开头的名字
+			select * from 表名 where name like "%张";  查找以张结尾的名字
+
+			select * from 表名 where name like "张_";   查找以张开头且名字是两位的
+			select * from 表名 where name like "张__";   查找以张开头且名字是三位的
 
 
 
+
+		 
 
 
 
