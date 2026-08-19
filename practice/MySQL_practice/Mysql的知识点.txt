@@ -126,12 +126,12 @@ select   专项练习
 		
 		select  distinct * from 表名； 去掉查询时的重复数据
 
-		where 语句
+		2   where 语句
 			select * from 表名 where  条件 and 条件；
 			<>  是不等于  同等于 !=
 			select * from 表名  not  where 条件；   相反的条件  跟!= 很像
 				
-		模糊查询语句
+		3   模糊查询语句
 			select * from 表名 where name like "张%";  查找以张开头的名字
 			select * from 表名 where name like "%张";  查找以张结尾的名字
 
@@ -146,18 +146,18 @@ select   专项练习
 
 		   
 
-		空判断
+		4   空判断
 			select * from students where card is null;
 			select * from students where card is not null;
 			
-		排序                           where    在order by  之前
+		5   排序                           where    在order by  之前
 			select * from students order by  字段（列） asc；(默认) 从小到大
 			select * from students order by  age  desc;  从大到小排列
 
 			select * from students order by age desc, student_id desc;  年龄从大到小排列  如果年龄相同 从学号从大到小排列
 
 
-		函数
+		6   函数
 			select count(*) from students;  返回多少条记录的
 			select count(distinct class) from students;   去除重复值之后 有多少条记录
 			select max(age) from student where sex = "女"; 查询最大的年龄
@@ -165,10 +165,19 @@ select   专项练习
 
 			avg   平均值忽略  null   分母相对应的也减一；
 
+		7   分组
+			select * from students where class = "1班"  group by  sex；
+	
+	一个句子  一般是   整句  + 条件 +  分组 + 排序
+		排序必须是在最后
+		
+			分组之后才能的数据筛选  having   having  可以使用聚合函数
+				select  class  from students  group  by  class  having  count(*)> 3;		查看  班级人数大于3人的 班级名称
 
-					
 
-
+		8   分页
+			select * from students limit 0,3;
+			select * from students limit 3;
 
 
 
