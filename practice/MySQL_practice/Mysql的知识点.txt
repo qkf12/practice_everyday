@@ -180,14 +180,18 @@ select   专项练习
 			select * from students limit 3;
 
 		9  内连接
-			select * from 表1 inner join 表2 on 表1.字段 = 表2.字段  					隐式内 连接
-					select * from 表1，表2 where 表1.字段 = 表2.字段	
+			select * from 表1 inner join 表2 on 表1.字段 = 表2.字段
+		where  条件； 					
+			隐式内 连接
+					select * from 表1，表2 where 表1.字段 = 表2.字段；
 
+			多表连接
+				select * from 表1 inner join 表2  on 表1.字段 = 表2.字段
+			inner join 表3 on 表2.字段 = 表3.字段；
+		10 左连接    （把inner 换成left）同理右连接 right
 
-
-
-
-
+		11 自关联
+			
 
 
 
