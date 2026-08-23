@@ -190,16 +190,18 @@ select   专项练习
 			inner join 表3 on 表2.字段 = 表3.字段；
 		10 左连接    （把inner 换成left）同理右连接 right
 
-		11 自关联
-			
+		11 自关联   (把自己看成两张表   用别名关联一下)  同一张表
+			select * from 表1 b1  inner  join  表1 b2
+		on  b1.字段 = b2.字段   where  条件;
 
 
+		12  子查询  （两个select   主查询  ）
+			例子
+				select * from students  where  age  > ( select avg(age) from students);			可以多表查询  
+			  不能用having   分组之后才能用
 
 
-
-
-
-
+			标量子查询    返回的是一个结果
 
 
 
