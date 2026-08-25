@@ -1,2 +1,24 @@
 打开文件    
-		start  位置
+		start  "路径"
+删除文件
+		删除bat文件所在文件夹的  （）类型的文件
+			@echo off
+			del *.类型
+			pause
+		删除指定文件夹里的文件
+			@echo off
+			del "路径"
+			pause
+合并所有想用文件
+		@echo off
+		copy *.扩展名 新文件名称(带扩展名)
+		@pause
+		
+		@echo off
+		copy "旧合并路径*.扩展名" "新路径 扩展名"
+		@pause
+
+更改文件扩展名
+		@echo off
+		ren *.jpg *.png
+		@pause
