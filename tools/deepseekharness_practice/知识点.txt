@@ -29,3 +29,46 @@
 		pnpm --version
 		下载插件
 			dsh plugin --profile web add 1HelloMan1/dsh-usage-dashboard-plus
+
+
+文档
+
+在 DeepSeek Harness 中创建、编辑、检查和交付表格、文档、演示文稿、多维表格和画布，支持实时预览与 worktree 审阅
+		dream-num/dsh-univer-office 
+
+
+ 完整中华传统智慧（玄枢 / XuanShu）技能包，封装为 DeepSeek Harness Cordis 插件：八字、紫微斗数、六爻、梅花易数、奇门遁甲、大六壬、太乙、五运六气、中医体质与风水推算，内置本地确定性引擎与可视化 Dashboard。
+		dhicoc/dsh-chinese-traditional-wisdom-skill 
+
+AI玄学助手技能：风水、面相、八字、星座、每日一卦与老黄历
+		kobenfang/Big8 
+
+
+
+完整 wuyun-liuqi（五运六气）中医运气学技能包，封装为 DeepSeek Harness 插件：年度与客气推算、临床辨证、病机推演
+		dhicoc/dsh-wuyun-liuqi 
+
+
+软件测试全流程技能包：10 个技能覆盖需求分析、测试策略、用例编写与审查、E2E（Playwright）与 API 自动化、探索式测试、回归范围与 Bug 分析，共享知识库提供格式规范、风险模型与 Schema 校验脚本。
+		fishzjp/qa-skills 
+
+
+工作流和自动化
+
+ AI 写简历容易，但写完常会遇到模板不合适、排版溢出、页面留白过多，以及改一处导致全局变形等问题。dsh-resume 专注解决手动修改简历繁琐、低效的问题，让 DSH 覆盖从内容撰写、模板选择到排版调优的完整简历工作流，并支持针对不同求职场景产出合适的简历版本。
+		L3n3L/dsh-resume 
+
+
+
+娱乐
+	 元气鲸鱼娘桌宠：摸头养成、工作状态联动、494 条台词与 30 项成就，自带设置面板，全本地零遥测。
+		Sutera-Diffusus/dsh-whale-musume 
+
+
+
+
+
+
+
+
+
