@@ -1,0 +1,16 @@
+{
+  "software_list": [
+    {
+      "name": "Vitriol",
+      "exe_path": "D:/aaaa_比赛/tools_world/Vitriol-Portable/Vitriol.exe",
+      "icon_path": null,
+      "id": "4d8966a778de4468b15cc4d6f9b12aa3"
+    },
+    {
+      "name": "MateEngineX",
+      "exe_path": "D:/ai3d桌宠/3d捕捉工具/Public.Release.X3.3.0-HOTFIX-1/MateEngineX.exe",
+      "icon_path": null,
+      "id": "f8ec8a37b3904f358e1fa25fe7d50971"
+    }
+  ]
+}
