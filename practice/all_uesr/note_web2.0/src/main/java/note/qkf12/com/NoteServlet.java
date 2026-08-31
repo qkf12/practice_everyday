@@ -15,7 +15,7 @@ public class NoteServlet extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/practice";
     private static final String USER = "root";
-    private static final String PASSWORD = "Qkf070425.";
+    private static final String PASSWORD = "Qk25.";
 
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
