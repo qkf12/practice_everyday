@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📒 我的记事本</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .toolbar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .toolbar input, .toolbar select {
+            padding: 8px 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .toolbar input:focus, .toolbar select:focus {
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 3px rgba(74,108,247,0.15);
+        }
+        .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: white;
+        }
+        .btn-primary { background: #4a6cf7; }
+        .btn-primary:hover { background: #3a56d4; }
+        .btn-success { background: #10b981; }
+        .btn-success:hover { background: #059669; }
+        .btn-danger { background: #ef4444; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-warning { background: #f59e0b; }
+        .btn-warning:hover { background: #d97706; }
+        .btn-outline {
+            background: transparent;
+            color: #4a6cf7;
+            border: 2px solid #4a6cf7;
+        }
+        .btn-outline:hover { background: #4a6cf7; color: white; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        tr:hover { background: #f9fafb; }
+        .empty-msg {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+        .status-bar {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 14px;
+        }
+        .status-bar .success { color: #10b981; font-weight: 600; }
+        .status-bar .error { color: #ef4444; font-weight: 600; }
+        .form-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .form-row label { font-weight: 600; color: #334155; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📒 我的记事本</h1>
+
+    <!-- 添加/修改表单 -->
+    <div class="form-row" id="formRow">
+        <label>日期</label>
+        <input type="text" id="inputDate" placeholder="如: 2026-08-31" value="2026-08-31">
+        <label>类型</label>
+        <select id="inputType">
+            <option value="获得">获得</option>
+            <option value="支出">支出</option>
+        </select>
+        <label>金额</label>
+        <input type="number" id="inputMoney" placeholder="0.00" step="0.01" value="100">
+        <button class="btn btn-success" id="btnAdd">➕ 添加</button>
+        <button class="btn btn-warning" id="btnUpdate" style="display:none;">✏️ 更新</button>
+        <button class="btn btn-outline" id="btnCancelUpdate" style="display:none;">取消</button>
+    </div>
+
+    <!-- 工具栏 -->
+    <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="🔍 按日期搜索..." style="flex:1;">
+        <button class="btn btn-primary" id="btnRefresh">🔄 刷新</button>
+        <button class="btn btn-danger" id="btnDeleteSelected">🗑️ 删除选中</button>
+    </div>
+
+    <!-- 数据表格 -->
+    <table>
+        <thead>
+        <tr>
+            <th style="width:40px;"><input type="checkbox" id="selectAll"></th>
+            <th>日期</th>
+            <th>类型</th>
+            <th>金额 (¥)</th>
+            <th style="width:140px;">操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataBody">
+        <!-- 由 JavaScript 动态生成 -->
+        </tbody>
+    </table>
+
+    <!-- 状态栏 -->
+    <div class="status-bar" id="statusBar">💡 点击「刷新」从数据库加载数据</div>
+</div>
+
+<script>
+    // 当前所有数据（从后端加载）
+    let allData = [];
+    // 当前正在编辑的日期（用于更新功能）
+    let editingDate = null;
+
+    // ========== 渲染表格 ==========
+    function renderTable(data) {
+        const tbody = document.getElementById('dataBody');
+        if (!data || data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="empty-msg">📭 暂无数据，请添加</td></tr>`;
+            return;
+        }
+        let html = '';
+        data.forEach((item) => {
+            // 用日期作为唯一标识（因为你的业务中日期是唯一的）
+            const safeDate = encodeURIComponent(item.date);
+            html += `
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox" data-date="${safeDate}"></td>
+                    <td>${item.date}</td>
+                    <td><span style="color:${item.type === '获得' ? '#10b981' : '#ef4444'}">${item.type}</span></td>
+                    <td>${item.money.toFixed(2)}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editRow('${safeDate}')" style="padding:4px 12px;font-size:12px;">✏️</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteRow('${safeDate}')" style="padding:4px 12px;font-size:12px;">🗑️</button>
+                    </td>
+                </tr>
+            `;
+        });
+        tbody.innerHTML = html;
+        setStatus(`共 ${data.length} 条记录`, 'success');
+    }
+
+    // ========== 刷新（从后端加载数据） ==========
+    function loadData() {
+        fetch('http://localhost:8080/note_web1/api/list')
+            .then(res => {
+                if (res.ok) return res.json();
+                // 尽量把后端返回的真实错误读出来，而不是笼统地报“网络错误”
+                return res.json().catch(() => ({}))
+                    .then(body => { throw new Error(body.error || ('HTTP ' + res.status)); });
+            })
+            .then(data => {
+                allData = data;  // 保存全部数据，供搜索使用
+                renderTable(data);
+                setStatus('✅ 数据加载成功', 'success');
+            })
+            .catch(err => {
+                // 只在真的有错误时才提示，并显示真实原因
+                setStatus('⚠️ 加载失败：' + err.message, 'error');
+                console.error(err);
+            });
+    }
+
+    // ========== 添加 ==========
+    function addRecord() {
+        const date = document.getElementById('inputDate').value.trim();
+        const type = document.getElementById('inputType').value;
+        const money = parseFloat(document.getElementById('inputMoney').value);
+
+        if (!date) { setStatus('❌ 请填写日期', 'error'); return; }
+        if (isNaN(money) || money <= 0) { setStatus('❌ 请输入有效金额', 'error'); return; }
+
+        const newItem = { date, type, money };
+
+        fetch('http://localhost:8080/note_web1/api/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'  },
+            body:`date=${encodeURIComponent(date)}&type=${encodeURIComponent(type)}&money=${money}`
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    loadData();
+                    setStatus('✅ 添加成功', 'success');
+                    document.getElementById('inputMoney').value = '';
+                } else {
+                    setStatus('❌ 添加失败: ' + (result.msg || '未知错误'), 'error');
+                }
+            })
+            .catch(err => {
+                setStatus('❌ 请求失败: ' + err.message, 'error');
+            });
+    }
+
+    // ========== 删除单行（按日期删除） ==========
+    function deleteRow(dateEncoded) {
+        if (!confirm('确定要删除这条记录吗？')) return;
+
+        // 解码日期（因为编码了）
+        const date = decodeURIComponent(dateEncoded);
+        fetch(`http://localhost:8080/note_web1/api/delete?date=${encodeURIComponent(date)}`, { method: 'DELETE' })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    loadData();
+                    setStatus('🗑️ 删除成功', 'success');
+                } else {
+                    setStatus('❌ 删除失败: ' + (result.msg || '未知错误'), 'error');
+                }
+            })
+            .catch(err => {
+                setStatus('❌ 请求失败: ' + err.message, 'error');
+            });
+    }
+
+    // ========== 删除选中 ==========
+    function deleteSelected() {
+        const checks = document.querySelectorAll('.row-checkbox:checked');
+        if (checks.length === 0) { setStatus('⚠️ 请先勾选要删除的记录', 'error'); return; }
+        if (!confirm(`确定要删除选中的 ${checks.length} 条记录吗？`)) return;
+
+        const dates = Array.from(checks).map(cb => decodeURIComponent(cb.dataset.date));
+        // 逐个删除（为了简单，不做批量）
+        let deleted = 0;
+        let failed = 0;
+        const promises = dates.map(date => {
+            return fetch(`http://localhost:8080/note_web1/api/delete?date=${encodeURIComponent(date)}`, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) deleted++; else failed++;
+                });
+        });
+        Promise.all(promises).then(() => {
+            loadData();
+            setStatus(`🗑️ 删除完成：成功 ${deleted} 条，失败 ${failed} 条`, 'success');
+        });
+    }
+
+    // ========== 编辑（填充到表单） ==========
+    function editRow(dateEncoded) {
+        const date = decodeURIComponent(dateEncoded);
+        // 从 allData 中查找
+        const item = allData.find(d => d.date === date);
+        if (!item) {
+            setStatus('❌ 未找到该记录', 'error');
+            return;
+        }
+        document.getElementById('inputDate').value = item.date;
+        document.getElementById('inputType').value = item.type;
+        document.getElementById('inputMoney').value = item.money;
+        editingDate = item.date;
+
+        document.getElementById('btnAdd').style.display = 'none';
+        document.getElementById('btnUpdate').style.display = 'inline-block';
+        document.getElementById('btnCancelUpdate').style.display = 'inline-block';
+        setStatus(`✏️ 正在编辑: ${item.date}`, 'success');
+    }
+
+    // ========== 执行更新 ==========
+    function updateRecord() {
+        const date = document.getElementById('inputDate').value.trim();
+        const type = document.getElementById('inputType').value;
+        const money = parseFloat(document.getElementById('inputMoney').value);
+
+        if (!date) { setStatus('❌ 请填写日期', 'error'); return; }
+        if (isNaN(money) || money <= 0) { setStatus('❌ 请输入有效金额', 'error'); return; }
+
+        // 先删除旧的，再添加新的（因为你的接口不支持更新，这里做简化）
+        // 实际上更合理的是调用更新接口，但你的后端目前没有 PUT 方法
+        // 所以我们用 删除 + 添加 来模拟更新（注意：如果日期变了，原来的记录会被删掉）
+        if (editingDate && editingDate !== date) {
+            // 日期变了，先删旧的
+            fetch(`http://localhost:8080/note_web1/api/delete?date=${encodeURIComponent(editingDate)}`, { method: 'DELETE' })
+                .then(() => {
+                    // 再添加新的
+                    return addDirectly(date, type, money);
+                });
+        } else {
+            // 日期没变，先删后加
+            fetch(`http://localhost:8080/note_web1/api/delete?date=${encodeURIComponent(date)}`, { method: 'DELETE' })
+                .then(() => {
+                    return addDirectly(date, type, money);
+                });
+        }
+
+        function addDirectly(d, t, m) {
+            fetch('http://localhost:8080/note_web1/api/add', {
+                method: 'POST',
+                headers: {  'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `date=${encodeURIComponent(d)}&type=${encodeURIComponent(t)}&money=${m}`
+            })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        loadData();
+                        setStatus('✅ 更新成功', 'success');
+                        cancelEdit();
+                    } else {
+                        setStatus('❌ 更新失败: ' + (result.msg || '未知错误'), 'error');
+                    }
+                });
+        }
+    }
+
+    // ========== 取消编辑 ==========
+    function cancelEdit() {
+        document.getElementById('btnAdd').style.display = 'inline-block';
+        document.getElementById('btnUpdate').style.display = 'none';
+        document.getElementById('btnCancelUpdate').style.display = 'none';
+        editingDate = null;
+        document.getElementById('inputDate').value = '';
+        document.getElementById('inputMoney').value = '';
+        setStatus('已取消编辑', 'success');
+    }
+
+    // ========== 搜索（前端过滤） ==========
+    function searchData() {
+        const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+        if (!keyword) {
+            renderTable(allData);
+            setStatus(`共 ${allData.length} 条记录`, 'success');
+            return;
+        }
+        const filtered = allData.filter(item => item.date.includes(keyword));
+        renderTable(filtered);
+        setStatus(`🔍 搜索 "${keyword}" 找到 ${filtered.length} 条`, 'success');
+    }
+
+    // ========== 全选/取消全选 ==========
+    function toggleSelectAll() {
+        const checked = document.getElementById('selectAll').checked;
+        document.querySelectorAll('.row-checkbox').forEach(cb => cb.checked = checked);
+    }
+
+    // ========== 状态栏 ==========
+    function setStatus(msg, type = '') {
+        const bar = document.getElementById('statusBar');
+        bar.innerHTML = msg;
+        bar.className = 'status-bar ' + type;
+    }
+
+    // ========== 绑定事件 ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        loadData();
+
+        document.getElementById('btnRefresh').addEventListener('click', loadData);
+        document.getElementById('btnAdd').addEventListener('click', addRecord);
+        document.getElementById('btnUpdate').addEventListener('click', updateRecord);
+        document.getElementById('btnCancelUpdate').addEventListener('click', cancelEdit);
+        document.getElementById('btnDeleteSelected').addEventListener('click', deleteSelected);
+        document.getElementById('selectAll').addEventListener('change', toggleSelectAll);
+        document.getElementById('searchInput').addEventListener('input', searchData);
+
+        document.getElementById('inputMoney').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') addRecord();
+        });
+    });
+</script>
+
+</body>
+</html>
