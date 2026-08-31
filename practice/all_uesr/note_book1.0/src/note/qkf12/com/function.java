@@ -11,7 +11,7 @@ public class function {
     public static ArrayList<nothing> list = new ArrayList<>();
     public static final String url =  "jdbc:mysql://127.0.0.1:3306/practice";
     public static final String user =  "root";
-    public static final String password =  "Qkf070425.";
+    public static final String password =  "Qk25.";
     public static Connection con;
 
     //=================主系统================
