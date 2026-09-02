@@ -1,1 +1,72 @@
 1  maven    方法     启动项       访问8080
+
+简单的方法
+		直接让idea 创建 springboot
+
+先导入
+再写方法  挂上帽子
+
+	import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+
+@RestController
+public class HelloController {
+    @RequestMapping("/hello")
+    public String sayHello(){
+        return "Hello World";
+    }
+}
+	
+
+
+
+
+yaml语法中
+		//*只能使用空格  不能使用tab建   （idea  能把tab自动转换成空格*//
+
+		文件格式  参考python
+	
+
+		纯量
+			"   ******"   \n这种转义符   是可以起作用的
+			'*********'  \n  是不起作用的
+	 
+
+
+
+		例子
+		server	
+			port ： 8080   端口号
+		name ： abc
+			
+		person ：
+			name ： zhangsan
+			age ： 20
+
+
+
+
+		行内写法  就是加大括号  其他不变
+		person ：{name ： zhangsan，age ： 20}
+			
+		
+		数组例子
+			address ：
+				- beijing
+				- shanghai
+
+		数据前都要加一个空格
+
+
+
+
+
+		参数引用
+		name： lisi
+
+		person：
+			name：${name}
+		
+			
