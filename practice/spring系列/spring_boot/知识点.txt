@@ -69,4 +69,29 @@ yaml语法中
 		person：
 			name：${name}
 		
+
+调用参数
+
+	一个值  用 Value
+		在原本的yml文件里  赋值
+			在java文件偏上
+				@Value（"${引用的名称}"）
+				定义  private
+				在方法里
+					打印
+			数组也是 一次只能引用一个值
+		
+	多个值  用   environment   （最长那个）
+		在yml文件里  写  多个值
+			person：
+				name： jork
+				age： 20
+		在java文件偏上写
+			@autowired
+			private Environment env;
+		在方法里  打印    person.name  等等
+	
+			
+	
+	
 			
