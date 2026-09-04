@@ -1,0 +1,16 @@
+spring.application.name: spring_boot3
+name : abc
+
+person:
+  name: ${name}
+  age: 20
+
+address:
+  - beijing
+  - shanghai
+
+
+
+
+
+
