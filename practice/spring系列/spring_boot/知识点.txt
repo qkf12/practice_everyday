@@ -87,7 +87,7 @@ yaml语法中
 				name： jork
 				age： 20
 		在java文件偏上写
-			@autowired
+			@Autowired
 			private Environment env;
 		在方法里  打印    person.name  等等
 	
