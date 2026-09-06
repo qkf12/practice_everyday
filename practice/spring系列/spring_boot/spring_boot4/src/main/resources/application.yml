@@ -2,3 +2,10 @@ spring.application.name : spring_boot4
 
 name : xiaohong
 
+person:
+  name: ${name}
+  age: 21
+
+arr:
+  - beijing
+  - shanghai
