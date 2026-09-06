@@ -89,7 +89,9 @@ yaml语法中
 		在java文件偏上写
 			@Autowired
 			private Environment env;
-		在方法里  打印    person.name  等等
+		在方法里 
+		打印 env.getProperty("person.name")
+		同理 下面一样
 	
 			
 	
