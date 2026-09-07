@@ -5,7 +5,9 @@ name : xiaohong
 person:
   name: ${name}
   age: 21
-
+  arr:
+    - beijing
+    - shanghai
 arr:
   - beijing
   - shanghai

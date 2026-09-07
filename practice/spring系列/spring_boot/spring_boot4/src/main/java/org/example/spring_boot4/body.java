@@ -24,7 +24,8 @@ public class body {
     @Autowired
     private Environment env;
 
-
+    @Autowired
+    private person person;
 
 
     @RequestMapping("/hello")
@@ -36,6 +37,10 @@ public class body {
         System.out.println(env.getProperty("person.age"));
         System.out.println("=================");
         System.out.println(arr1);
+        System.out.println(env.getProperty("arr[0]"));
+        System.out.println("=================");
+        System.out.println(person.getName());
+        System.out.println(person.getAge());
 
         return "hello world";
     }
