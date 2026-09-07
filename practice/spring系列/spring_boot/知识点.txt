@@ -93,6 +93,38 @@ yaml语法中
 		打印 env.getProperty("person.name")
 		同理 下面一样
 	
+
+	类的方法 
+		@ConfigurationProperties
+
+		例子
+
+			@Component
+			@ConfigurationProperties(prefix = "person")  //这个person是yml里的person   
+			第一步和建立类一样  get set 方法 和tostring
+			打印 直接打  就行
+			
+			如果是 数组
+				就用for循环
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+		
 			
 	
 	
