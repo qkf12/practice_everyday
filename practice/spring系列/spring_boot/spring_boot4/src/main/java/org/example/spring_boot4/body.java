@@ -12,35 +12,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class body {
-    @Value("${name}")
-    private String name;
-
-    @Value("${person.age}")
-    private int age;
-
-    @Value("${arr[0]}")
-    private String arr1;
-
-    @Autowired
-    private Environment env;
-
-    @Autowired
-    private person person;
-
+//    @Value("${name}")
+//    private String name;
+//
+//    @Value("${person.age}")
+//    private int age;
+//
+//    @Value("${arr[0]}")
+//    private String arr1;
+//
+//    @Autowired
+//    private Environment env;
+//
+//    @Autowired
+//    private person person;
+//
 
     @RequestMapping("/hello")
     public String hello() {
-        System.out.println(name);
-        System.out.println(age);
-        System.out.println("=================");
-        System.out.println(env.getProperty("person.name"));
-        System.out.println(env.getProperty("person.age"));
-        System.out.println("=================");
-        System.out.println(arr1);
-        System.out.println(env.getProperty("arr[0]"));
-        System.out.println("=================");
-        System.out.println(person.getName());
-        System.out.println(person.getAge());
+//        System.out.println(name);
+//        System.out.println(age);
+//        System.out.println("=================");
+//        System.out.println(env.getProperty("person.name"));
+//        System.out.println(env.getProperty("person.age"));
+//        System.out.println("=================");
+//        System.out.println(arr1);
+//        System.out.println(env.getProperty("arr[0]"));
+//        System.out.println("=================");
+//        System.out.println(person.getName());
+//        System.out.println(person.getAge());
 
         return "hello world";
     }
