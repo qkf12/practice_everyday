@@ -1,9 +1,9 @@
-1  maven    方法     启动项       访问8080
+  maven    方法     启动项       访问8080
 
-简单的方法
+1 简单的方法
 		直接让idea 创建 springboot
 
-先导入
+2  先导入
 再写方法  挂上帽子
 
 	import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +23,7 @@ public class HelloController {
 
 
 
-yaml语法中
+3  yaml语法中
 		//*只能使用空格  不能使用tab建   （idea  能把tab自动转换成空格*//
 
 		文件格式  参考python
@@ -70,7 +70,7 @@ yaml语法中
 			name：${name}
 		
 
-调用参数
+4  调用参数
 
 	一个值  用 Value
 		在原本的yml文件里  赋值
@@ -108,11 +108,23 @@ yaml语法中
 				就用for循环
 			
 
+5  properties 的文件配置顺序
 
+	1  file / config / 是优先级最高的
+	2 file 优先级其次
+	2  配置文件下的 config 文件夹里优先级再其次
+	3  最后是在  配置文件的底部  优先级最低 
+	
 
+6  修改项目访问路径
+	快捷键  context
+	整体是 
+		server.servlet.context-path =  /hello   //  这个是不需要引号的
 
+	修改端口号
+		server.port = 8081
 
-
+		// 这俩也不用在末尾加  ；
 
 
 
