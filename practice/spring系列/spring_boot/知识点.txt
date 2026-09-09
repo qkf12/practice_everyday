@@ -129,8 +129,22 @@ public class HelloController {
 
 
 
+7  从外部 修改文件优先级
+
+	1	jar包的相应文件夹 里 cmd
+		java -jar spring（名字） --server.port=8082   //更多指令用  空格隔开
+		java -jar spring（名字） --ser  ver.port=8082   -server.servlet.context-path=/hello1		//修改项目路径
+	
+	2	直接把配置文件放在jar包外边任意位置
+		java -jar spring（名字）--spring.config.location = （配置文件的路径）
+	3	把配置文件放在jar包的config目录下  直接运行  自动读取
+
+	4	把配置文件放在jar包的同一目录下  直接运行  自动读取 优先级比3低
+
+	外部的作用是 亡羊补牢 内部配置的
 
 
+	
 
 
 
