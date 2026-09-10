@@ -206,6 +206,12 @@ public class HelloController {
 	}
 		
 		在专门的接口测试工具里 写 相应的post请求
+
+		{
+			"name" : "张三"
+			"age": "18"
+
+		}
 		
 		后端返回张三 年龄
 
