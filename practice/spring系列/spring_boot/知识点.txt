@@ -149,6 +149,67 @@ public class HelloController {
 
 
 
+
+
+
+第一个接口
+  第一种方法
+	接受前端给的数据
+
+	@RestController
+	public class 类名{
+		@GetMapping("/hello")
+		  public String hello {
+			System.out.println(@Requestparam (defaultValue = "" ) String name );
+			sout(name)
+			return "hello world"
+		}
+	}
+		
+		在导航栏里拼接    ？name = 张三
+		
+		后端返回张三
+
+
+
+ 第二种方法
+	接受前端给的数据
+
+	@RestController
+	public class 类名{
+		@GetMapping("/hello/{name}")
+		  public String hello {
+			System.out.println(@PathVariable String name );
+			sout(name)
+			return "hello world"
+		}
+	}
+		
+		在导航栏里   直接写   /张三
+		
+		后端返回张三
+
+
+第三种方法
+	接受前端给的数据       // 用json的封装方法  前后端分离的项目 更常见
+		不能用传统的浏览器 传输了 只能用 接口测试工具了
+
+	@RestController
+	public class 类名{
+		@postMapping("/user")
+		  public String hello {
+			System.out.println(@RequestBody  定义对象名  参数 );
+			sout("name：" + user.getName());
+			sout("age：" + user.getage());
+			return "hello world"
+		}
+	}
+		
+		在专门的接口测试工具里 写 相应的post请求
+		
+		后端返回张三 年龄
+
+
 			
 		
 			
