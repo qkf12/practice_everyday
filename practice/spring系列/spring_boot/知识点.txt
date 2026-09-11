@@ -129,6 +129,39 @@ public class HelloController {
 
 
 
+	分别写 三个yaml文件
+		 第一个是传统命名的yaml文件
+			内容是
+				spring：
+					profiles:
+						active：dev
+
+
+		第二个yaml文件是
+			命名 ：传统文件名-dev
+				内容：
+					server：
+						servlet：
+							context-path ： /dev-api
+						post：
+							8081
+	
+		第三个yaml文件是
+			命名 ：传统文件名-prod
+				内容：
+					server：
+						servlet：
+							context-path ： /prod-api
+						post：
+							8082
+
+
+
+		用这种方法 就是实现 更改一个文件的配置 
+								就能更改 相应的开发环境
+
+
+
 7  从外部 修改文件优先级
 
 	1	jar包的相应文件夹 里 cmd
@@ -216,8 +249,19 @@ public class HelloController {
 		后端返回张三 年龄
 
 
+
+新注解 	 增 postmapping  	//用json 打包传递 
+	     	删 deletemapping
+	   	 改 putmapping
+		查 getmapping
 			
-		
+上面的 三种方法 可以同时使用 用  ，隔开
+
+
+	如果 一个类中有很多 postmapping("/hello")  资源路径是一样的话
+		在类上面加一个@requestmapping（“/hello”）
+
+java里使用的是驼峰命名法 这个也不例外  
 			
 	
 	
