@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /prod-api
+  post: 8082
