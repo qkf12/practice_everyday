@@ -250,6 +250,10 @@ public class HelloController {
 
 
 
+RestFul  	风格的
+
+
+
 新注解 	 增 postmapping  	//用json 打包传递 
 	     	删 deletemapping
 	   	 改 putmapping
@@ -269,7 +273,21 @@ java里使用的是驼峰命名法 这个也不例外
 
 
 
-8  控制mysql
+8  
+第零步
+		在测试环境的yml文件里
+
+
+	spring:
+		datasource:
+			url: dbc:mysql://127.0.0.1:3306/20260614-demo?						characterEncoding=UTF-8&serverTimezone=UTC
+			username:root
+			password:root
+			driver-class-name: com.mysql.cj.jdbc.Driven
+
+
+
+ 第一步控制mysql    在 xml里
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
@@ -277,19 +295,125 @@ java里使用的是驼峰命名法 这个也不例外
 
 	</dependency>
 
+第三步
+	<dependency>
+		<groupId>com.baomidou</groupId>
+		<artifactId>mybatis-plus-spring-boot4-starter</artifactId>
+	</dependency>
+	
+	
+	mybatis-plus
+		用来控制 mysql  的小部门  用maven的 来配置
+			找官网	
+					baomidou.com/getting-started/install/
+				与<dependencies> 同级
+
+第二步
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-bom</artifactId>
+            <version>3.5.15</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 
 
 
+shift + 鼠标左键点版本 找依赖
 
 
 
+第四步
+		写一个mapper    接口    mapper   是文件夹名称
+			文件夹建在主程序里
+				之后再定义扫描mapper的工具
+					Mapper.UserMapper   工具包嘛
+			要导入 User 和basemapper
+
+			@Mapper
+			public interface UserMapper extends BaseMapper<User> {
+
+}
+
+第五步
+		上边是 接口类
+			这一次是找 定义的类
+				@Data      //这里的Data 在第六步导入
+@TableName("`user`")
+@NoArgsConstructor	//无参构造
+@AllArgsConstructor  //实参构造
+
+public class User {
+    private Long id;
+    private String name;
+    private Integer age;
+    private String email;
+}
+
+
+无参构造是：
+		等同public User() {}
+
+实参构造是：
+		等同public User(Long id, String name, Integer age) { ... }
+
+第六步
+
+		在xml里 
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+			</dependency>
+
+			刷新一下
+			然后导Date的包
+
+
+		//这里的lombok是结局Date的倒入问题
+
+
+第七步
+		在主文件夹里 建一个 config 文件夹
+					里面写 MyBatisPlusConfig 的类
+
+					config.MyBatisPlusConfig
+
+
+		在类代码 上边写
+	@MapperScan("写具体的mapper路径   例如：shiao.shia.haio.Mapper")
+	@Configuration
 
 
 
+第八步
+		在测试类里面 写  跟主体文件并列的那种
 
 
+		@SpringBootTest
+		class DemoApplicationTests {
 
+			@Resource 
+			private UserMapper userMapper;
+				//上边这两行是要加的
+		@Test
 
+			void TextContent(){
+			System.out.println(("----- selectAll method test ------"));
+       			 List<User> userList = userMapper.selectList(null);
+        		Assert.isTrue(5 == userList.size(), "");
+       			 userList.forEach(System.out::println);
+			//上边这几行也是要添加的  添加之后继续导包
+
+		}
+
+		
+		可能会报错
+			在maven里
+				点一下text就可以运行了
 
 
 
