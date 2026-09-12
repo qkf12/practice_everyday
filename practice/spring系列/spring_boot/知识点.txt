@@ -262,6 +262,43 @@ public class HelloController {
 		在类上面加一个@requestmapping（“/hello”）
 
 java里使用的是驼峰命名法 这个也不例外  
+
+
+
+
+
+
+
+8  控制mysql
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>8.0.31</version>
+
+	</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
 			
 	
 	
