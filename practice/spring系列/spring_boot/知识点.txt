@@ -342,7 +342,7 @@ shift + 鼠标左键点版本 找依赖
 第五步
 		上边是 接口类
 			这一次是找 定义的类
-				@Data      //这里的Data 在第六步导入
+@Data      //这里的Data 在第六步导入
 @TableName("`user`")
 @NoArgsConstructor	//无参构造
 @AllArgsConstructor  //实参构造
@@ -417,9 +417,59 @@ public class User {
 
 
 
+第九步  对照
+		补充一个数据库的知识
+	ALTER TABLE	`user`            //著名 我要修改的是那个表
+	MODIFY COLUMN `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',       //修改的id     bigint  相当于  int
+	ADD COLUMN `create_time` datetime COMMENT '创建时间'
+	ADD COLUMN `update_time` datetime COMMENT '修改时间';
 
 
 
+	如果 数据库的字段名（中间有下划线 _）和java 的大驼峰命名法不一样的话
+
+	在对象类里 写
+		用注解
+			@TableField（value = "sql_sql"）
+			public  localDateTime CreateTime;
+			等等
+		
+		如果 Id 在数据库里是自增属性
+			那么   要在  对象类里写 注解
+				@TableId
+				public  int Id；
+
+
+
+第十步   
+		在写增删改查的java文件里
+		//调用usermapper
+			@Resource
+			public UserMapper usermapper；
+
+		接着把
+			@Getmapper
+			public List getAll({
+return userMapper.selectlist(new LambdaUpdateWrapper<>();}
+
+//把String  改成 List
+//再把返回值改成 如上
+		
+
+
+第十一步
+
+		@Json  封装
+			如果不用json封装的话   第九步的创建时间 可能会中间带T
+
+		这个注解写在 @tablefield  紧接着的下边
+		
+		@JsonFormat(pattern = "yyyy-MM-dd  HH：mm：ss")
+
+
+		public  localDateTime CreateTime;//的上边
+
+			
 
 	
 
