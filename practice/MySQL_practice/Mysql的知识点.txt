@@ -58,6 +58,8 @@ create table 表明(
 如果 在创建表的时候  没想到还有一列  在原有的表上新建一列
 		alter table 表名 add column 列名 varchar(10);
 
+	相同  删除莫一列 的话 把 add 换成drop  其他约束和属性不加就行
+
 create table students(
 	name varchar(10),
 	age tinyint unsigned
