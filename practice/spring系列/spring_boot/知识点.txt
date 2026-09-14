@@ -470,6 +470,58 @@ return userMapper.selectlist(new LambdaUpdateWrapper<>();}
 		public  localDateTime CreateTime;//的上边
 
 			
+第十二步
+	 修改   第十步的下半部分
+		public Page<User> getAll（）{
+		return userMapper.selectPage(new Page<user>(1,10),new lLambdaUpdateWrapper<>());
+
+	}
+
+第十三步
+		分页插件
+
+		点击第二部的  版本数字  进入配置页
+
+		找到
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-jsqlparser</artifactId>
+			<version>3.5.15</version>
+		</dependency>
+
+
+		复制到xml里
+
+
+
+		然后再到
+		MyBatisPlusConfig 文件里
+			写
+			@Bean
+public MybatisPlusInterceptor mybatisPlusInterceptor() {
+	MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+	interceptor.addInnerInterceptor (new PaginationInnerInterceptor (DbType.MYsQL));
+	return interceptor;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
 
