@@ -141,19 +141,21 @@ public class HelloController {
 			命名 ：传统文件名-dev
 				内容：
 					server：
+						port：
+							8081
 						servlet：
 							context-path ： /dev-api
-						post：
-							8081
+						
 	
 		第三个yaml文件是
 			命名 ：传统文件名-prod
 				内容：
 					server：
+						port：
+							8082
 						servlet：
 							context-path ： /prod-api
-						post：
-							8082
+						
 
 
 
@@ -280,10 +282,10 @@ java里使用的是驼峰命名法 这个也不例外
 
 	spring:
 		datasource:
-			url: dbc:mysql://127.0.0.1:3306/20260614-demo?						characterEncoding=UTF-8&serverTimezone=UTC
+			url: dbc:mysql://127.0.0.1:3306/20260614-demo?									
 			username:root
 			password:root
-			driver-class-name: com.mysql.cj.jdbc.Driven
+			driver-class-name: com.mysql.cj.jdbc.Driver
 
 
 
