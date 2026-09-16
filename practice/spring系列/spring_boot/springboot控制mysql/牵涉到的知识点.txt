@@ -74,6 +74,42 @@ import org.apache.catalina.User;          // 这是 Tomcat 的接口，不是你
 
 
 
+数据库中删除一行数据 是
+		delete from 表名 where  列名 = ！！；
+
+添加完数据 之后 只要 莫一行有一个数值  那就只能  用update 
+
+		update `user`  set !! = !!, !! = !! where = !!;
+
+
+	属性是  datetime  
+		时间嘛   now（）
+		update `user` 
+		set create_time = now(),update_time = now() 
+		where id != 1;
+		
+
+
+
+重中之重是
+
+  每一次导入user的时候都要更改一下配置
+
+
+
+@GetMapping
+    public List<User> getAll() {
+        return userMapper.selectList(null);
+    }
+
+		这个是获取到数据库所有信息的代码    跟 知识点 的不同
+
+	太多专有名词了  
+		
+
+
+
+
 
 
 

@@ -433,7 +433,7 @@ public class User {
 	在对象类里 写
 		用注解
 			@TableField（value = "sql_sql"）
-			public  localDateTime CreateTime;
+			private  localDateTime CreateTime;
 			等等
 		
 		如果 Id 在数据库里是自增属性
