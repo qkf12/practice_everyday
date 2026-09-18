@@ -60,6 +60,15 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+
+
+<!--        分页插件-->
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
+            <version>3.5.15</version>
+        </dependency>
     </dependencies>
 <!--插件依赖-->
     <dependencyManagement>

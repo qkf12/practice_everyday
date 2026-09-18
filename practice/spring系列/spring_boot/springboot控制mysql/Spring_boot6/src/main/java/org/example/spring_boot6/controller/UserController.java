@@ -2,6 +2,7 @@ package org.example.spring_boot6.controller;
 
 
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.annotation.Resource;
 import org.example.spring_boot6.entity.User;
 import org.example.spring_boot6.mapper.UserMapper;
@@ -18,8 +19,8 @@ public class UserController {
     private UserMapper userMapper;
 
     @GetMapping
-    public List<User> getAll() {
-        return userMapper.selectList(null);
+    public Page<User> getAll() {
+        return userMapper.selectPage(new Page<User>(1,10),null);
     }
     @GetMapping("/{id}")
     public String get2(@PathVariable int id){
