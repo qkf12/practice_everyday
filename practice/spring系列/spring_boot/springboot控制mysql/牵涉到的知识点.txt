@@ -108,9 +108,19 @@ import org.apache.catalina.User;          // 这是 Tomcat 的接口，不是你
 		
 
 
+CREATE TABLE t_user_role (
+  user_id int NOT NULL,
+  role_id int NOT NULL,
+  PRIMARY KEY (user_id, role_id)  -- 必须写在最后，组合在一起
+);
+
+这个主键是      PRIMARY KEY   写到这一行是 可以快速 删除或者更改
+	可以给两个值给出主键
 
 
 
+COLLATE utf8mb4_unicode_ci：
+			排序规则，_ci 代表 Case Insensitive（不区分大小写）。utf8mb4 支持存储中文和 Emoji 表情。
 
 
 
