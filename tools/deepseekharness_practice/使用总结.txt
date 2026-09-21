@@ -1,0 +1,15 @@
+今天九月二十一号
+	下载了一下blender 尝试deepseekharness 连接
+
+先下载依赖
+node.js
+
+之后
+npm install -g pnpm
+
+下载插件
+npx @deepseek-ai/dsh plugin --profile web add dsh-blender
+
+npx @deepseek-ai/dsh plugin --profile web exec dsh-blender-setup
+
+
