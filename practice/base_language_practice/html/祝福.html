@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>缓缓出现的祝福卡片</title>
+  <style>
+    /* 页面全局样式：渐变背景 + 滚动控制 */
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #f0f8ff, #e6e6fa); /* 柔和渐变背景 */
+      font-family: "Microsoft Yahei", sans-serif;
+      overflow-x: hidden; /* 防止卡片溢出导致横向滚动 */
+    }
+
+    /* 卡片容器：相对定位，用于承载绝对定位的卡片 */
+    .card-container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    /* 单个卡片基础样式 */
+    .card {
+      position: absolute;
+      width: 160px;
+      height: 90px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影增强层次感 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;       /* 文字白色 */
+      font-size: 16px;   /* 文字大小 */
+      text-align: center;/* 文字居中 */
+      animation: slideIn 0.8s ease-out forwards; /* 绑定滑入淡入动画 */
+      opacity: 0;        /* 初始透明（动画从透明开始） */
+    }
+
+    /* 关键帧动画：滑入 + 淡入 */
+    @keyframes slideIn {
+      from {
+        transform: translateY(30px) scale(0.9); /* 从下方30px、缩小90%开始 */
+        opacity: 0;                             /* 初始透明 */
+      }
+      to {
+        transform: translateY(0) scale(1);      /* 回到原位、恢复正常大小 */
+        opacity: 1;                             /* 完全不透明 */
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="music-hint">点击页面任意位置启动背景音乐 🎵</div>
+    <audio id="bgMusic" autoplay muted loop muted preload="metadata" src="牛奶咖啡 - 快乐星猫.mp3"></audio>
+    <script>
+  document.addEventListener('click', function() {
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.muted = false;
+  }, { once: true });
+</script>
+  <!-- 卡片容器，内部放祝福卡片（也可由JS动态生成） -->
+  <div class="card-container" id="cardContainer"></div>
+
+  <script>
+    // 1. 获取容器 & 定义祝福语数组
+    const container = document.getElementById("cardContainer");
+    const wishes = [
+      "你笑起来真好看",
+      "别放弃呀～",
+      "一切都会变好✨",
+      "每天进步一点点💪",
+      "今天的你超棒🥳",
+      "有好多话想对你说",
+      "很高兴和你在一起",
+      "在干嘛呢～🧐",
+      "今天天气不错🌤️",
+      "你已经很棒啦👍",
+      "愿所有梦想成真🌟",
+      "时间都很珍贵呀⏳",
+      "有你在很安心🥰",
+      "你的坚持，终有所得✨",
+      "今天也为你加油🚀",
+      "吃饭了吗～🍚",
+      "慢慢来，比较快🐾",
+      "你值得所有美好💐",
+      "世界这么大，能遇见你很幸运🌈"
+    ];
+
+    // 2. 生成指定数量的卡片（推荐不要 300 张，先试 15~20 张看效果，太多会卡）
+    const cardCount = 300; // 👈 你可以调大，比如 20、30，但 300 会非常卡且难观察效果
+    for (let i = 0; i < cardCount; i++) {
+      // 创建卡片元素
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      // 3. 随机设置卡片属性：背景色、祝福语、位置、动画延迟
+      // 3.1 随机背景色（交替粉色/浅蓝色，也可扩展更多颜色）
+      const randomColors = [
+  "#FFB6C1", "#ADD8E6", "#FFE066", "#FF9AA2", "#B5EAD7",
+  "#C7CEEA", "#FFDAC1", "#A8EDEA", "#F8B195", "#F67280"
+];
+
+const bgColor = randomColors[Math.floor(Math.random() * randomColors.length)];
+card.style.backgroundColor = bgColor;
+
+      // 3.2 随机祝福语（从数组中选）
+      card.textContent = wishes[Math.floor(Math.random() * wishes.length)];
+
+      // 3.3 随机尺寸（可选，如果你想让卡片大小也随机）
+      const width = 120 + Math.random() * 80;
+      const height = 70 + Math.random() * 50;
+      card.style.width = `${width}px`;
+      card.style.height = `${height}px`;
+
+      // 3.4 随机位置（top/left 在视口内随机分布）
+      const top = Math.random() * (window.innerHeight - height);
+      const left = Math.random() * (window.innerWidth - width);
+      card.style.top = `${top}px`;
+      card.style.left = `${left}px`;
+
+      // ✅ 关键修改：让卡片按顺序一个接一个出现
+      // 比如第0张 delay=0s，第1张 delay=0.2s，第2张 delay=0.4s，...
+      const delay = i * 0.2; // 每张比前一张晚 0.2 秒出现
+      card.style.animationDelay = `${delay}s`;
+
+      // 3.5 动画持续时间也可以固定或微调，这里用固定 0.8s（与 CSS 中一致）
+      card.style.animationDuration = `0.8s`; // 不随机了，保持一致更整齐
+
+      // 4. 将卡片加入容器
+      container.appendChild(card);
+    }
+  </script>
+</body>
+</html>
