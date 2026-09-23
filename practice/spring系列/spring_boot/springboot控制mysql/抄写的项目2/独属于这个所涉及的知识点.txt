@@ -1,0 +1,59 @@
+这个项目是 先不用 注解的方法 写get set等
+
+1		在创建springboot的时候   找到sql
+		的mybatis framework
+			mysql的 driver
+		勾选
+
+1.5		<dependency>
+			<groupld>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			//<scope>  runtime  </scope>  这一行代表的 运行时才运行这段环境  如果不注释掉 第三步的 Driver会报错
+		</dependency>
+
+
+
+
+2		创建user.java类
+		private
+			使用get set 以及tostring   也就是 alt + insert
+
+3		创建yml文件
+			spring：
+				datasource：
+					url：jdbc:mysql:///springboot
+					username:
+					password:
+					driver-class-name:com.mysql.jdbc.Driver
+
+
+
+4		写一个Usermapper的接口文件  interface
+		
+		老位置 写@Mapper注解
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
