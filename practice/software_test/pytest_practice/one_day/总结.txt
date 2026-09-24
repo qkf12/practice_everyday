@@ -4,3 +4,23 @@
 		3 终端 启动项是 pytest -v
 错误地方为
 		找 E  和E where
+
+
+终端执行 pytest -v 这个命令 还有翻版
+		pytest  文件路径.py -v
+
+
+参数化装饰
+	
+	@pytest.mark.parametrize("score, expected", [（），（），])
+	
+
+	例子
+		@pytest.mark.parametrize("score, expected", [
+   	 	(95, "优秀"),    # 正常数据
+    		(90, "优秀"),    # 边界值（刚好90）
+    		(89, "及格"),    # 边界值（差一分）
+    		(60, "及格"),    # 边界值（刚好60）
+    		(59, "不及格"),  # 边界值（差一分）
+    		(0, "不及格")    # 极端数据
+		])
