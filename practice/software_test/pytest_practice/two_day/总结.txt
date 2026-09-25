@@ -2,15 +2,63 @@
 		可以一次性赋值两个
 			num，expected = 1，false
 
-		导包
+		导包跟java一样快捷键 alt + 回车
 			导包是 from 文件夹.文件名（不用.py） import 函数名
 
 
 		测试用函数
-			def test1（可以自定义）：
+			def test1（可以自定义 但 要用test打头）：
 				assert 函数名（ 1）= false
 			
 			也可
 				def test2：
 					num ，expected = 1，false
 						assert 函数名（ num）= false
+
+
+	如果  被测函数和 断言函数不在一个文件夹里
+		在终端运行的时候要带
+		pytest -v .\文件夹\文件名.py
+				这个路径是 测试函数的路径 不是被测函数的路径
+	
+
+	pytest  后面可以加选项
+		-v 是启动  -s 是显示 测试函数的打印值
+
+@pytest.mark.parametrize 的使用方法
+	
+		@pytest.mark.parametrize（"变量名 //与 测试函数对应 而不是被测函数，期望值 expected"，[（17，ture），
+						（1，ture），
+						（121，ture）
+					]）
+
+		def test1（变量名，expected）：
+			assert 函数名（变量名）= expected
+
+
+进阶 
+		测试数据可以单独存放在一个文件夹里
+		建议
+			函数名_test_datas = [（17，ture），
+						（1，ture），
+						（121，ture）
+					]
+
+		@pytest.mark.parametrize（"变量名 //与 测试函数对应 而不是被测函数，期望值 expected"，函数名_test_datas）  //之后导包
+
+		def test1（变量名，expected）：
+			assert 函数名（变量名）= expected
+
+
+
+
+
+
+
+
+
+
+
+
+
+
