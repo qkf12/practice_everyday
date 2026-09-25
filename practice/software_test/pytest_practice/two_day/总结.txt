@@ -1,0 +1,16 @@
+在python里 
+		可以一次性赋值两个
+			num，expected = 1，false
+
+		导包
+			导包是 from 文件夹.文件名（不用.py） import 函数名
+
+
+		测试用函数
+			def test1（可以自定义）：
+				assert 函数名（ 1）= false
+			
+			也可
+				def test2：
+					num ，expected = 1，false
+						assert 函数名（ num）= false
