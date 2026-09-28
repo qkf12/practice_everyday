@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        *{
+            list-style: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id = "app">
+        <p>{{text}}</p>
+        <p>王佳泽是nb</p>
+        <p v-text = "text"></p>
+        <p v-html = "text"></p>
+        <p v-once>{{smg}}</p>
+        <p><input type="text" v-model = "smg"></p>
+        <p>{{smg}}</p>
+        <p>猜字游戏</p>
+        <p><input type="text" v-model.number = "one_judgement" ></p>
+        <p>提示 一个很重要的年龄</p>
+        <p v-if = "one_judgement === 18">恭喜您中大奖了</p>
+        <p v-else-if = "one_judgement ===19">很接近了</p>
+        <p v-else>不对哦</p>
+        <p v-show = "one_judgement">提示 如果猜对了 会显示 恭喜您中大奖了</p>
+        <hr>
+        <p><img :src="img1" alt="" width="200"></p>
+        <button v-on:click = "chengshu()">成熟一点</button>
+        <button v-on:click = "nianqing()">年轻一点</button>
+        <button v-on:click = "shenshi()">绅士一点</button>
+        <hr>
+        <ul>
+            <li v-for ="yifu in clothes">{{yifu.name}}:{{yifu.price}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="ren in user">{{ren}}</li>
+        </ul>
+        <span v-for="ren in user">{{ren}} &emsp;</span>
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    text : "<b>王佳泽是nb</b>",
+                    smg : "今天天气真好",
+                    one_judgement : "请输入你猜的数字",
+                    img1 : "小鸡鸡.jpg",
+                    clothes :[
+                        {name:"上衣",price :90},
+                        {name:"裤子",price :90},
+                        {name:"棉裤",price :90},
+                    ],
+                    user :{
+                        name :"王佳泽",
+                        age : 2,
+                        toufa : "长黑曲",
+                        high : "一米吧"
+                    } 
+                    
+                    
+                }
+            },
+            methods:{
+                chengshu(){
+                    this.img1 = "成熟鸡.jpg"
+                },
+                nianqing(){
+                    this.img1 = "小鸡鸡.jpg"
+                },
+                shenshi(){
+                    this.img1 = "绅士鸡.jpg"
+                }
+
+
+            }
+
+        }).mount("#app")
+    </script>
+    
+</body>
+</html>
