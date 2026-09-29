@@ -1,0 +1,63 @@
+class Student :
+	def __init__(self,a,b,c,d):
+		this.name = a
+		this.sex = b
+		this.age = c
+		this.height = d
+
+	def listen( self ):
+		print("听课")
+	def write( self ):
+		print("写作业")
+
+
+
+stu1 = Student（"小明"，"男"，16，167）
+.。。。
+
+使用的话是
+
+print（stu1.name）  
+
+改的话是
+
+stu1.age = 20  //直接修改
+
+
+可以继续追加 对象属性
+
+stu1.xxx = yyy       ///！！！  java是静态语言    python是动态语言本质区别  追加动态属性这个java没有
+
+第二种是跟函数很像   stu1.listen（） 
+
+
+
+java和python的区别 
+
+java类
+是 创建类  private 的等等
+	引用是 
+		类名 定义的类名  = new 类名（）
+
+
+例子
+		public nothing(){}
+
+    		public nothing(String date, String type, double money){
+        		this.date = date;
+        		this.type = type;
+        		this.money = money;
+    		}
+
+
+			第一种是 创建对象的时候 先创建一个 有名无实的对象
+			第二个则填充满
+
+
+		使用的话是  get 和set方法
+
+
+python类
+class 类名
+	写相应的值
+		最后引用的
