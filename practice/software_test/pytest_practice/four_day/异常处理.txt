@@ -1,0 +1,59 @@
+try :
+	
+
+except(ValueError,AritheticError):
+	print(“已知异常”)
+except：
+	print（“未知异常”）
+
+
+
+pytest.raise()   跟try except 双胞胎兄弟
+
+被测函数
+
+def divide(a, b):
+    if b == 0:
+        raise ValueError("除数不能为0")  # 这是【开发】写的 raise
+    return a / b
+
+测试函数
+
+def test_divide_by_zero():
+    # 你不需要写 raise，你只需要调用它
+    with pytest.raises(ValueError, match="除数不能为0"):
+        divide(10, 0)  
+# 调用被测函数，它内部会自动 raise 报错，外面的 pytest.raises 负责抓
+
+
+
+算是公式吧
+
+# 你的测试代码结构
+def test_某个场景():
+    with pytest.raises(你预期的错误类型, match="预期错误信息里的关键词"):
+        被测函数(会引发错误的参数)  # 这里绝对不写 raise！
+
+
+
+
+
+with  关键字 算是保安    遇见错误的时候能把问题抛给后边pytest.raises
+
+
+raise  是抛出的意思  指抛出问题
+
+例子
+
+def test_raise():
+with pytest.raises (ValueError, match='must be 0 or None') :
+raise ValueError("value must be 0 or None")
+
+
+这个是在没有被测函数的时候 测试  测试函数用的 raise嘛
+
+
+一个测试思维
+	写多个测试函数 用来对 一个测试函数 测试
+	
+	一个测试函数 里最好写一个with pytest.raise()   因为 一个错误之后 后面的函数就不会执行了
