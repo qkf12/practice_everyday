@@ -97,6 +97,11 @@ git checkout  + 分支名   切换分支
 			# 5. 推送测试
 			git push origin main
 
+最简单一句话
+git config --global alias.pushall '!git push origin && git push gitee'
+
+
+
 
 
 
