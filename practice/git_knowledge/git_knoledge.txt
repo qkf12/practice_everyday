@@ -100,6 +100,9 @@ git checkout  + 分支名   切换分支
 最简单一句话
 git config --global alias.pushall '!git push origin && git push gitee'
 
+之后 就直接 git pushall
+就可以了
+
 
 
 
